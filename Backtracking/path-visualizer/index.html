@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Path Finder using Backtracking</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+    />
+    <link rel="stylesheet" href="./styler.css" />
+    <!-- Latest compiled and minified JavaScript -->
+  </head>
+  <body>
+    <h1>Pathfinder</h1>
+    <hr />
+    <h3>Question</h3>
+    <table id="Question"></table>
+    <hr />
+    <h3>Answer</h3>
+    <table id="Answer"></table>
+    <button class="btn btn-success" id="board-btn">Create the Board</button>
+    <button class="btn btn-success" id="draw-btn">Draw Path</button>
+    <hr />
+    <!-- The video -->
+    <video autoplay muted loop id="myVideo">
+      <source src="./bg-video.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Optional: some overlay text to describe the video -->
+    <div class="content">
+      <h1>The Future Is Now</h1>
+      <p>
+        The Future Is Now aNumak & Company is a global company offering business
+        acumen and solutions to give enterprises a competitive edge. We unlock
+        potentials and enable digital evolution that opens next level growth for
+        enterprises.
+      </p>
+      <!-- Use a button to pause/play the video with JavaScript -->
+      <button id="myBtn" onclick="myFunction()">Pause</button>
+    </div>
+    <hr />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--
+    <script src="./string-palindrome.js"></script>
+-->
+    <script>
+      // Get the video
+      var video = document.getElementById("myVideo");
+
+      // Get the button
+      var btn = document.getElementById("myBtn");
+
+      // Pause and play the video, and change the button text
+      function myFunction() {
+        if (video.paused) {
+          video.play();
+          btn.innerHTML = "Pause";
+        } else {
+          video.pause();
+          btn.innerHTML = "Play";
+        }
+      }
+    </script>
+    <script src="./activity-selection.js"></script>
+  </body>
+</html>

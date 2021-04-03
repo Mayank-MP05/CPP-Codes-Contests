@@ -1,0 +1,6 @@
+part1:2 | part2: 0.5 |maxRunPossible: 2.5
+NO
+part1:2 | part2: 0 |maxRunPossible: 2
+NO
+part1:0 | part2: 6 |maxRunPossible: 6
+YES

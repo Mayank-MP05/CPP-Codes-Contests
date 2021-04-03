@@ -1,0 +1,1 @@
+{"name":"Local: string-program","url":"c:\\Codeplace\\Competitive\\Java-CC\\string-program.cpp","tests":[{"id":1616475076276,"input":"1\nRLUDRLUD\n1 2\n2\n2 3\n1 -2","output":"YES 2\nNO"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Codeplace\\Competitive\\Java-CC\\string-program.cpp","group":"local","local":true}
