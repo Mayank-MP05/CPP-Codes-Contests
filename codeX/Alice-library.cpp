@@ -37,26 +37,64 @@ typedef vector<vl>		vvl;
 
 #define SHOW true
 
+int findLastOpener(string str, int n) {
+	int opener = -1;
+	// for (int i = 0 ; i < n ; i++ ) {
+	// 	if (str[i] == '/') {
+	// 		opener = i;
+	// 	}
+	// }
+	size_t found = str.find_last_of('/');
+	if (found != string::npos) {
+		return found;
+	}
+	return opener;
+}
+int findFirstCloser(string str, int n, int start) {
+	// for (int i = 0 ; i < n ; i++ ) {
+	// 	if (str[i] == '\\') {
+	// 		return i;
+	// 	}
+	// }
+	size_t found = str.find('\\');
+	if (found != string::npos) {
+		return found;
+	}
+	return -1;
+}
+string breakInnerShelf(string str, int n) {
+	string ans = str;
+	int start = findLastOpener(str, n);
+	if (start == -1) {
+		return str;
+	}
+	int end = findFirstCloser(str, n, start);
+	deb2(start, end);
 
+	string rev = str.substr(start + 1, end - start - 1);
+	deb(str.substr(start + 1, end));
+	reverse(rev.begin(), rev.end());
+	deb(rev);
+	deb(str.substr(0, start));
+	deb(str.substr(end + 1, n));
+	ans = str.substr(0, start) + rev + str.substr(end + 1, n - end);
+	return ans;
+}
 void solve() {
 	ll i, j, n, m, a, b, c;
 	string str;
 	cin >> str;
 	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
+	c = 0;
+	for (i = 0 ; i < n ; i++ ) {
+		if (str[i] == '/' or str[i] == '\\') {
+			c++;
 		}
 	}
-	cout << "NO\n";
+	while (findFirstCloser(str, n, 0) != -1) {
+		str = breakInnerShelf(str, n);
+	}
+	cout << str << "\n";
 }
 
 int main() {
@@ -69,7 +107,7 @@ int main() {
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	// cin >> t;
 	while (t--) {
 		solve();
 	}

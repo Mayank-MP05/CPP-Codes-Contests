@@ -40,23 +40,30 @@ typedef vector<vl>		vvl;
 
 void solve() {
 	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
+	cin >> n >> m;
+	vector<vector<ll> > grid(n, vector<ll> (m, 0));
+	fo(i, n) {
+		fo(j, m) {
+			cin >> grid[i][j];
 		}
 	}
-	cout << "NO\n";
+	fo(i, n) {
+		fo(j, m) {
+			cout << grid[i][j] << " ";
+		}
+		cout << "\n";
+	}
+	fo(i, n) {
+		fo(j, m) {
+			if (grid[i][j] == 1)
+				cout << "/" << " ";
+			else if (grid[i][j] == 2)
+				cout << "\\" << " ";
+			else
+				cout << " " << " ";
+		}
+		cout << "\n";
+	}
 }
 
 int main() {
@@ -69,7 +76,7 @@ int main() {
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	// cin >> t;
 	while (t--) {
 		solve();
 	}

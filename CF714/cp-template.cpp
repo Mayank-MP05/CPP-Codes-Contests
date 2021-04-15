@@ -39,24 +39,40 @@ typedef vector<vl>		vvl;
 
 
 void solve() {
-	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
+	ll i, j, n, m, a, b, c, k;
+	cin >> n >> k;
+	//n is odd
+	ll mid;
+	if (n & 1) {
+		if (k <= n / 2) {
+			mid = n / 2 + 1;
+			//Odd Pattern Printing
+			for (i = 1 ; i <= mid ; i++) {
+				cout << i << " ";
+				if (i != mid) {
+					cout << i + mid << " ";
+				}
+
+			}
+			cout << "\n";
+
+			return;
+		}
+	} else {
+		if (k <= (n / 2) - 1) {
+			mid = n / 2 + 1;
+			for (i = 1 ; i <= mid ; i++) {
+				cout << i << " ";
+				if (i + mid <= n) {
+					cout << i + mid << " ";
+				}
+			}
+			cout << "\n";
+
 			return;
 		}
 	}
-	cout << "NO\n";
+	cout << -1 << "\n";
 }
 
 int main() {

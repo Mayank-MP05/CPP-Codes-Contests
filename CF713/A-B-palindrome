@@ -40,23 +40,67 @@ typedef vector<vl>		vvl;
 
 void solve() {
 	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
+	cin >> n;
+	vector<string> sq(n);
+	fo(i, n) {
+		cin >> sq[i];
+	}
+	ll x1, y1, x2, y2;
+	bool isFirst = true;
+	for (i = 0 ; i < n ; i++ ) {
+		for (j = 0 ; j < n ; j++ ) {
+			if (sq[i][j] == '*') {
+				if (isFirst) {
+					x1 = i;
+					y1 = j;
+					isFirst = false;
+				} else {
+					x2 = i;
+					y2 = j;
+				}
+			}
 		}
 	}
-	cout << "NO\n";
+	// deb4(x1, y1, x2, y2);
+	ll x3, y3, x4, y4;
+	if (y1 == y2) {
+		//Same Row
+		if (y1 == n - 1) {
+			x3 = x1;
+			x4 = x2;
+			y3 = y1 - 1;
+			y4 = y2 - 1;
+		} else {
+			x3 = x1;
+			x4 = x2;
+			y3 = y1 + 1;
+			y4 = y2 + 1;
+		}
+	} else if (x1 == x2) {
+		//Same Columns
+		if (x1 == n - 1) {
+			x3 = x1 - 1;
+			x4 = x1 - 1;
+			y3 = y1;
+			y4 = y2;
+		} else {
+			x3 = x1 + 1;
+			x4 = x1 + 1;
+			y3 = y1;
+			y4 = y2;
+		}
+	} else {
+		//Different Rows and Columns
+		x3 = x1;
+		y3 = y2;
+		x4 = x2;
+		y4 = y1;
+	}
+	sq[x3][y3] = '*';
+	sq[x4][y4] = '*';
+	fo(i, n) {
+		cout << sq[i] << "\n";
+	}
 }
 
 int main() {

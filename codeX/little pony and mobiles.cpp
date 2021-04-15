@@ -39,24 +39,37 @@ typedef vector<vl>		vvl;
 
 
 void solve() {
-	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
-		}
+	ll i, j, n, m, a, b, c, qry;
+	cin >> n;
+	vl A(n), B(n);
+	fo(i, n) {
+		cin >> A[i];
 	}
-	cout << "NO\n";
+	fo(i, n) {
+		cin >> B[i];
+	}
+
+	//Precompute
+	vl prefA(n + 1);
+	prefA[0] = 0;
+	ll sum = 0;
+	for (i = 0 ; i < n ; i++ ) {
+		sum += A[i];
+		prefA[i + 1] = sum;
+	}
+
+	// O of n square approach
+	fo(i, n) {
+		qry = B[i];
+		for (j = 0 ; j <= n ; j++ ) {
+			if (prefA[j] <= qry) {
+				continue;
+			} else {
+				break;
+			}
+		}
+		cout << j - 1 << "\n";
+	}
 }
 
 int main() {
@@ -69,7 +82,7 @@ int main() {
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	// cin >> t;
 	while (t--) {
 		solve();
 	}

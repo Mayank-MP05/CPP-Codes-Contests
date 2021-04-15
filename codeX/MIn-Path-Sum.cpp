@@ -37,26 +37,39 @@ typedef vector<vl>		vvl;
 
 #define SHOW true
 
-
-void solve() {
-	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
-		}
+int fun(int a, int b) {
+	if (a > 0 and b > 0) {
+		deb2(a, b);
+		return fun(-7, 10) + fun(b - 2, a - 1);
 	}
-	cout << "NO\n";
+	return a + b;
+
+}
+void solve() {
+	ll i, j, n, m, a, b, c, d, qry;
+	cin >> n >> c >> d;
+	// vl A(n), B(n);
+	// fo(i, n) {
+	// 	cin >> A[i];
+	// }
+	// fo(i, n) {
+	// 	cin >> B[i];
+	// }
+	// vl dpA(n, INT_MAX), dpB(n, INT_MAX);
+	// dpA[0] = A[0];
+	// dpB[0] = B[0];
+	// for (int i = 1; i < n; i++) {
+	// 	for (j = (i - c < 0) ? 0 : (i - c) ; j < i ; j++) {
+	// 		deb2(i, j);
+	// 		debArr(dpA, n);
+	// 		debArr(dpB, n);
+
+	// 		dpA[i] = min(dpA[i], min(dpA[j], dpB[j] + d) + A[i]);
+	// 		dpB[i] = min(dpB[i], min(dpA[j] + d, dpB[j]) + B[i]);
+	// 	}
+	// }
+	// cout << min(dpA[n - 1], dpB[n - 1]) << endl;
+	cout << fun(2, 3);
 }
 
 int main() {
@@ -69,7 +82,7 @@ int main() {
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	// cin >> t;
 	while (t--) {
 		solve();
 	}

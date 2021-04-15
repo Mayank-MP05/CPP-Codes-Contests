@@ -38,25 +38,22 @@ typedef vector<vl>		vvl;
 #define SHOW true
 
 
-void solve() {
-	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
+void solve(vector<bool> primesArr, ll size) {
+	ll i, j, n, a, b, c, l, r;
+	cin >> l >> r;
+	int ans = -1;
+	ll first;
+	for (i = l ; i <= r ; i++) {
+		if (primesArr[i]) {
+			if (ans == -1) {
+				first = i;
+				ans = 0;
+			} else {
+				ans = i - first;
+			}
 		}
 	}
-	cout << "NO\n";
+	cout << ans << "\n";
 }
 
 int main() {
@@ -69,9 +66,31 @@ int main() {
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	int t = 1;
+
+	// Create and Print the Prime Seive
+	vector<bool> ip(1000001, true);
+	for (int i = 2 ; i < sqrt(1000001) ; i++ ) {
+		for (int j = i * i ; j < 1000001 ; j += i) {
+			ip[j] = false;
+		}
+	}
+	vl primesArr;
+	for (int i = 2 ; i <= 1000000 ; i++ ) {
+		if (ip[i]) {
+			// deb(i);
+			primesArr.push_back(i);
+		}
+	}
+	// for (int i = 2 ; i <= 100 ; i++ ) {
+	// 	if (ip[i]) {
+	// 		deb(i);
+	// 		// primesArr.push_back(i);
+	// 	}
+	// }
+	ll size = primesArr.size();
 	cin >> t;
 	while (t--) {
-		solve();
+		solve(ip, size);
 	}
 
 	return 0;

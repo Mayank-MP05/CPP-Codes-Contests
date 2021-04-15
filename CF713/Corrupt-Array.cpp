@@ -40,23 +40,91 @@ typedef vector<vl>		vvl;
 
 void solve() {
 	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
+	cin >> n;
+	n += 2;
+	vl ip(n);
+	ll maxP1 = INT_MIN, maxIdxOne, maxP2 = INT_MIN, maxIdxTwo;
+	fo(i, n) {
+		cin >> ip[i];
+		//Finding the First Max Element
+		if (ip[i] >= maxP1) {
+			maxP1 = ip[i];
+			maxIdxOne = i;
+		}
+	}
+	// findinf second Max Element
+	fo(i, n) {
+		if (ip[i] >= maxP2 and i != maxIdxOne) {
+			maxP2 = ip[i];
+			maxIdxTwo = i;
+		}
+	}
+	// deb2(maxP1, maxP2);
+	//Precompute Sums - Case Max1 is the Sum and
+	vl ip_without_sum(n - 1);
+	j = 0;
+	//Array Formation
+	fo(i, n) {
+		if (i != maxIdxOne) {
+			ip_without_sum[j] = ip[i];
+			j++;
+		}
+	}
+	//Precompute
+	vl SumACaseOne(n - 1);
+	j = 0;
+	ll sum = 0;
+	fo(i, n - 1) {
+		sum += ip_without_sum[j];
+		SumACaseOne[j] = sum;
+		j++;
+	}
+	//Checking if Pattern Exist - Ingogre One
+	fo(i, n - 1) {
+		if (SumACaseOne[n - 2] - ip_without_sum[i] == maxP1) {
+			fo(j, n - 1) {
+				if (j != i) {
+					cout << ip_without_sum[j] << " ";
+				}
+			}
+			cout << "\n";
 			return;
 		}
 	}
-	cout << "NO\n";
+
+	//Precompute Sums - Case Max1 is the Sum and
+	vl ip_without_sum2(n - 1);
+	j = 0;
+	//Array Formation
+	fo(i, n) {
+
+		if (i != maxIdxTwo) {
+			ip_without_sum2[j] = ip[i];
+			j++;
+		}
+	}
+	//Precompute
+	vl SumACaseTwo(n - 1);
+	j = 0;
+	sum = 0;
+	fo(i, n - 1) {
+		sum += ip_without_sum2[j];
+		SumACaseTwo[j] = sum;
+		j++;
+	}
+	//Checking if Pattern Exist - Ingogre One
+	fo(i, n - 1) {
+		if (SumACaseTwo[n - 2] - ip_without_sum2[i] == maxP2) {
+			fo(j, n - 1) {
+				if (j != i) {
+					cout << ip_without_sum2[j] << " ";
+				}
+			}
+			cout << "\n";
+			return;
+		}
+	}
+	cout << "-1" << endl;
 }
 
 int main() {

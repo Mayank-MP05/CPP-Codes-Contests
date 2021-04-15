@@ -38,25 +38,27 @@ typedef vector<vl>		vvl;
 #define SHOW true
 
 
-void solve() {
-	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
-		}
+void solve(string virus, ll m) {
+	ll i, j, n, a, b, c;
+	string patient;
+	cin >> patient;
+	n = patient.size();
+	j = 0; // Iterator for Virus
+	if (n > m) {
+		cout << "NEGATIVE\n";
+		return;
 	}
-	cout << "NO\n";
+	for (i = 0 ; i < n and j < m ; ) {
+		if (virus[j] == patient[i]) {
+			i++;
+		}
+		j++;
+	}
+	if (i == n) {
+		cout << "POSITIVE\n";
+	} else {
+		cout << "NEGATIVE\n";
+	}
 }
 
 int main() {
@@ -69,9 +71,12 @@ int main() {
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	int t = 1;
+	string virus;
+	cin >> virus;
+	ll m = virus.length();
 	cin >> t;
 	while (t--) {
-		solve();
+		solve(virus, m);
 	}
 
 	return 0;

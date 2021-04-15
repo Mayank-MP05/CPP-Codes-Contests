@@ -40,23 +40,22 @@ typedef vector<vl>		vvl;
 
 void solve() {
 	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
+	cin >> n;
+	vl A(n);
+	fo(i, n) {
+		cin >> A[i];
+	}
+	ll first = A[0];
+	if (A[0] != A[1] and A[1] == A[2]) {
+		cout << 1 << "\n";
+		return;
+	}
+	for (int i = 1 ; i < n ; i++ ) {
+		if (A[i] != first) {
+			cout << i + 1 << "\n";
 			return;
 		}
 	}
-	cout << "NO\n";
 }
 
 int main() {

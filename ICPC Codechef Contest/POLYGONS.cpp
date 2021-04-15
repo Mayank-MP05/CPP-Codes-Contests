@@ -35,28 +35,22 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
-
+#define SHOW false
+#define M_PI 3.14159265358
 
 void solve() {
 	ll i, j, n, m, a, b, c;
-	string str;
-	cin >> str;
-	n = str.size();
-	// Palindromic Traversal
-	string left, right, ans;
-	for (i = 0; i < n / 2; i++)
-	{
-		if (str[i] != 'a' and str[n - 1 - i] != 'a') {
-			cout << "YES\n";
-			left = str.substr(0, n - i);
-			right = str.substr(n - i, n);
-			ans = left + 'a' + right;
-			cout << ans << "\n";
-			return;
-		}
-	}
-	cout << "NO\n";
+	cin >> n;
+	double demoniator, numerator = 1;
+	// Full / leftover area
+	double dn = n;
+	double theta = ((dn - 2) * M_PI) / dn;
+	deb(theta);
+	double bigTerm = sqrt((double)1 / (double)2) * (sqrt(1 - cos(theta))) * (cos(M_PI / dn));
+	deb(bigTerm);
+	demoniator = (double)1 - bigTerm;
+	double ans = numerator / demoniator;
+	cout << ans << "\n";
 }
 
 int main() {
@@ -68,6 +62,7 @@ int main() {
 
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+	cout << fixed << setprecision(8);
 	int t = 1;
 	cin >> t;
 	while (t--) {

@@ -1,0 +1,11 @@
+start=2,end=7
+str.substr(start + 1, end)=love\i\
+rev=evol
+str.substr(0, start)=/u
+str.substr(end + 1, n)=i\
+start=0,end=7
+str.substr(start + 1, end)=uevoli\
+rev=iloveu
+str.substr(0, start)=
+str.substr(end + 1, n)=
+iloveu
