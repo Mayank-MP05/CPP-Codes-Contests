@@ -37,12 +37,20 @@ typedef vector<vl>		vvl;
 
 #define SHOW true
 
-
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, el, q, k, l, r;
+	ll a, b;
+	cin >> a >> b;
+	ll xorBoth = a ^ b;
+
+	// Count the seet bits in xorBoth
+	ll count = 0, rmsb;
+	while (xorBoth != 0) {
+		rmsb = xorBoth & ( -xorBoth);
+		xorBoth -= rmsb;;
+		count++;
+	}
+	cout << count << endl;
 }
 
 int main() {

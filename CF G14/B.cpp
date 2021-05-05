@@ -35,14 +35,26 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
 
+bool isPerfectSquare(double n) {
+	double sq = sqrt(n);
+	if (ceil(sq) == floor(sq)) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll x, i, j, n, m;
+	cin >> n ;
+	double dn = n;
+	if (isPerfectSquare(dn / 2) or isPerfectSquare(dn / 4)) {
+		cout << "YES\n";
+	} else {
+		cout << "NO\n";
+	}
 }
 
 int main() {

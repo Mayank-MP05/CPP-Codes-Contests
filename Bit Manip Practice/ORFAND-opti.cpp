@@ -37,12 +37,80 @@ typedef vector<vl>		vvl;
 
 #define SHOW true
 
+ll orArr(vl arr) {
+	ll ans = 0;
+	for (ll el : arr) {
+		ans |= el;
+	}
+	return ans;
+}
+
+void makeCount(vl ip, vl& countArr) {
+	ll i, j, mask, n = ip.size();
+	for (i = 0 ; i < 128 ; i++ ) {
+		mask = 1LL << i;
+		for (j = 0 ; j < n ; j++ ) {
+			if (mask & ip[j]) {
+				countArr[log2(mask)]++;
+			}
+		}
+	}
+}
+
+ll removeAndAddToCountArr(vl &ip, vl& countArr, ll pos, ll newVal) {
+	ll i, j, mask, n = ip.size();
+
+	//Removing the bits
+	for (i = 0 ; i < 128 ; i++ ) {
+		mask = 1LL << i;
+		if (mask & ip[pos]) {
+			countArr[log2(mask)]--;
+		}
+	}
+
+	//Adding the new bits
+	for (i = 0 ; i < 128 ; i++ ) {
+		mask = 1LL << i;
+		if (mask & newVal) {
+			countArr[log2(mask)]++;
+		}
+	}
+
+	//updating the ip array
+	ip[pos] = newVal;
+
+	//Creating ans from countArr
+	ll ans = 0;
+	for (i = 0 ; i < 128 ; i++ ) {
+		if (countArr[i] > 0) {
+			mask = 1LL << i;
+			ans |= mask;
+		}
+	}
+	return ans;
+}
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, el, q, k, l, r;
+	ll a, b;
+	cin >> n >> q;
+	vl ip(n);
+	vl count(128);
+	fo(i, n) {
+		cin >> ip[i];
+	}
+	makeCount(ip, count);
+	debArr(count, 128);
+	ll ans;
+	ans = removeAndAddToCountArr(ip, count, 0, ip[0]);
+	cout << ans << endl;
+	fo(i, q) {
+		cin >> a >> b;
+		// ip[a - 1] = b;
+		// cout << orArr(ip) << "\n";
+		ans = removeAndAddToCountArr(ip, count, a - 1, b);
+		cout << ans << endl;
+	}
 }
 
 int main() {

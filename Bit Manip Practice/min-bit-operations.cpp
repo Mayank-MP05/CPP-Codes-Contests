@@ -35,14 +35,20 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
 
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, k;
+	cin >> n >> m;
+	vl A(n), B(m);
+	fo(i, n) {
+		cin >> A[i];
+	}
+	fo(i, m) {
+		cin >> B[i];
+	}
+
 }
 
 int main() {
@@ -55,7 +61,7 @@ int main() {
 #endif // ONLINE_JUDGE
 	ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	// cin >> t;
 	while (t--) {
 		solve();
 		line;

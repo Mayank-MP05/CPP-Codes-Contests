@@ -42,7 +42,9 @@ void solve() {
 	ll i, j, n, m;
 	cin >> n;
 	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	bitset<64> x(n);
+	cout << x << endl;
+	// cout << sizeof(n) << endl;
 }
 
 int main() {

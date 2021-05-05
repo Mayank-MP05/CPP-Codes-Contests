@@ -35,14 +35,39 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
 
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, el, k, l, r;
+	cin >> l >> r;
+
+	// bool starterBit = l & 1;
+	ll range = r - l + 1;
+
+	bool start = l & 1;
+	bool end = r & 1;
+
+	bool isOdd;
+
+	ll half;
+	if (start and end) {
+		half = (range / 2) + 1;
+	} else {
+		half = range / 2;
+	}
+
+	if (half % 2 == 0) {
+		isOdd = false;
+	} else {
+		isOdd = true;
+	}
+
+	if (isOdd) {
+		cout << "Odd\n";
+	} else {
+		cout << "Even\n";
+	}
 }
 
 int main() {

@@ -37,12 +37,28 @@ typedef vector<vl>		vvl;
 
 #define SHOW true
 
+ll orArr(vl arr) {
+	ll ans = 0;
+	for (ll el : arr) {
+		ans |= el;
+	}
+	return ans;
+}
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, el, q, k, l, r;
+	ll a, b;
+	cin >> n >> q;
+	vl ip(n);
+	fo(i, n) {
+		cin >> ip[i];
+	}
+	cout << orArr(ip) << "\n";
+	fo(i, q) {
+		cin >> a >> b;
+		ip[a - 1] = b;
+		cout << orArr(ip) << "\n";
+	}
 }
 
 int main() {

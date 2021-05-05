@@ -35,14 +35,56 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
 
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, el, k, l, r;
+	ll a, b;
+	cin >> n >> a >> b;
+
+	ll ca = 0, cb = 0;
+	ll temp = a, rmsb;
+	while (temp != 0) {
+		rmsb = temp & (-temp);
+		temp -= rmsb;
+		ca++;
+	}
+
+	temp = b;
+	while (temp != 0) {
+		rmsb = temp & (-temp);
+		temp -= rmsb;
+		cb++;
+	}
+
+	ll sum = ca + cb;
+	ll ans = 0, mask;
+	if (sum <= n) {
+		j = 0;
+		mask = 1;
+		while (j < sum) {
+			mask <<= 1;
+			ans = ans | mask;
+			j++;
+		}
+		if (n - sum > 0) {
+			ans <<= (n - sum);
+		}
+	} else {
+		j = 0;
+		mask = 1;
+		while (j < sum - n) {
+			mask <<= 1;
+			ans = ans | mask;
+			j++;
+		}
+		if (sum - n > 0) {
+			ans <<= (sum - n);
+		}
+	}
+
+	cout << ans << "\n";
 }
 
 int main() {

@@ -35,14 +35,53 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
 
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll x, i, j, n, m;
+	cin >> n >> x;
+	vl ip(n);
+	fo(i, n) {
+		cin >> ip[i];
+	}
+	vl op(all(ip));
+	sort(all(op));
+	// for (j = 0; j < n ; j++ ) {
+	// 	cout << op[j] << " ";
+	// }
+	if (n == 1) {
+		if (ip[0] == x) {
+			cout << "NO\n";
+			return;
+		} else {
+			cout << "YES\n" << ip[0] << "\n";
+			return;
+		}
+	}
+	ll sum = 0;
+	for (i = 0 ; i < n ; i++ ) {
+		sum += op[i];
+		if (sum == x) {
+			if (i != n - 1) {
+				swap(op[i], op[i + 1]);
+				cout << "YES\n";
+				for (j = 0; j < n ; j++ ) {
+					cout << op[j] << " ";
+				}
+				cout << "\n";
+				return;
+			} else {
+				cout << "NO\n";
+				return;
+			}
+		}
+	}
+	cout << "YES\n";
+	for (j = 0; j < n ; j++ ) {
+		cout << op[j] << " ";
+	}
+	cout << "\n";
 }
 
 int main() {

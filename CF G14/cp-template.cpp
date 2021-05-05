@@ -42,7 +42,7 @@ void solve() {
 	ll i, j, n, m;
 	cin >> n;
 	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	cout << "\n" << n*n*n*n << "\n";
 }
 
 int main() {

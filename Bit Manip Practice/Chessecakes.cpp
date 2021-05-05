@@ -37,12 +37,40 @@ typedef vector<vl>		vvl;
 
 #define SHOW true
 
+class Chessecakes
+{
+public:
+	ll val, setbits;
+	Chessecakes(ll val) {
+		ll c = 0, tmp = val, rmsb;
+		while (tmp != 0) {
+			rmsb = tmp & (-tmp);
+			tmp -= rmsb;
+			c++;
+		}
+		this->val = val;
+		this->setbits = c;
+	}
+};
 
+bool cmp(Chessecakes c1, Chessecakes c2) {
+	return c1.setbits > c2.setbits;
+}
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, el, q, k, l, r;
+	ll a, b;
+	cin >> n >> k;
+	vector<Chessecakes> ip;
+	fo(i, n) {
+		cin >> el;
+		ip.push_back(Chessecakes(el));
+	}
+	sort(all(ip), cmp);
+	ll ans = 0;
+	for (i = 0 ; i < k ; i++ ) {
+		ans += ip[i].setbits;
+	}
+	cout << ans << "\n";
 }
 
 int main() {

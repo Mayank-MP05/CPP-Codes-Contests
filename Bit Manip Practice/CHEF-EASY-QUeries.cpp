@@ -39,10 +39,30 @@ typedef vector<vl>		vvl;
 
 
 void solve() {
-	ll i, j, n, m;
-	cin >> n;
-	deb(n);
-	cout << "\n" << n*n*n << "\n";
+	ll i, j, n, m, el, k, l, r;
+	ll a, b;
+	cin >> n >> k;
+	vl ip(n);
+	fo(i, n) {
+		cin >> ip[i];
+	}
+	ll left = 0;
+	for (i = 0 ; i < n ; i++ ) {
+		if (ip[i] + left >= k) {
+			left = left + ip[i] - k;
+		} else {
+			cout << i + 1 << "\n";
+			return;
+		}
+	}
+	deb(left);
+	i = n + (left / k) + 1;
+	// while (left >= k) {
+	// 	deb(left);
+	// 	left -= k;
+	// 	i++;
+	// }
+	cout << i << "\n";
 }
 
 int main() {
