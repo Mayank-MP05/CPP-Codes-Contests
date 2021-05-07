@@ -35,22 +35,31 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
 
 void solve() {
-	ll i, j, n, m, el, q, k, l, r;
-	ll a, b;
-	cin >> a >> b;
-	ll xorBoth = a ^ b;
+	ll i, j, n, m, p, q, a, b, ans, el;
+	cin >> n;
 
-	// Count the seet bits in xorBoth
-	ll count = 0, rmsb;
-	while (xorBoth != 0) {
-		rmsb = xorBoth & ( -xorBoth);
-		xorBoth -= rmsb;;
-		count++;
+	ll nod = 0; // No of  digits
+	ll tmp = n;
+	ll rem;
+	while (tmp != 0) {
+		rem = tmp % 10;
+		tmp /= 10;
+		nod++;
 	}
-	cout << count << "\n";
+
+	vl baseArr({1, 11, 111, 1111, 11111, 111111, 1111111, 11111111, 111111111});
+
+	ans = (nod - 1) * 9;
+	ll msdDigit = rem;
+	if (n >= (baseArr[nod - 1]*msdDigit)) {
+		ans += msdDigit;
+	} else {
+		ans += (msdDigit - 1);
+	}
+	cout << ans << "\n";
 }
 
 int main() {

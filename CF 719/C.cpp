@@ -35,22 +35,78 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
+
+bool isSafe(vector<vector<ll>> matrix, map<ll, bool> used, ll i, ll j, ll no, ll n) {
+	bool row = false, col = false;
+	if (i != 0 and abs(no - matrix[j][i - 1]) != 1) {
+		row = true;
+	}
+	if (i == 0) {
+		row = true;
+	}
+	if (j != 0 and abs(no - matrix[j - 1][i]) != 1) {
+		col = true;
+	}
+	if (j == 0) {
+		col = true;
+	}
+	return col and row;
+}
+
+void printMatrix(vector<vector<ll>> matrix, ll n) {
+	ll i, j;
+	fo(i, n) {
+		fo(j, n) {
+			cout << matrix[i][j] << " ";
+		}
+		cout << "\n";
+	}
+	line;
+}
+
+bool fillMatrix(vector<vector<ll>>& matrix, map<ll, bool> used, ll i, ll j, ll n) {
+	if (i == n and j == n - 1) {
+		printMatrix(matrix, n);
+		return true;
+	}
+	// printMatrix(matrix, n);
+
+	if (i == n) {
+		j++;
+		i = 0;
+	}
+	ll k = 1;
+	// if (i != 0) {
+	// 	k = matrix[j][i - 1];
+	// }
+	for ( ; k <= n * n ; k++ ) {
+		if (!used[k] and isSafe(matrix, used, i, j, k, n)) {
+			used[k] = true;
+			matrix[j][i] = k;
+			if (fillMatrix(matrix, used, i + 1, j, n)) {
+				return true;
+			} else {
+				used[k] = false;
+				matrix[j][i] = 0;
+			}
+		}
+		// used[k] = false;
+		// matrix[i][j] = 0;
+	}
+	return false;
+}
 
 void solve() {
-	ll i, j, n, m, el, q, k, l, r;
-	ll a, b;
-	cin >> a >> b;
-	ll xorBoth = a ^ b;
+	ll i, j, n, m, p, q, a, b, ans, el;
+	cin >> n;
+	vector<vector<ll>> matrix(n, vector<ll> (n, 0));
+	map<ll, bool> used;
+	if (fillMatrix(matrix, used, 0, 0, n)) {
 
-	// Count the seet bits in xorBoth
-	ll count = 0, rmsb;
-	while (xorBoth != 0) {
-		rmsb = xorBoth & ( -xorBoth);
-		xorBoth -= rmsb;;
-		count++;
+	} else {
+		cout << -1 << "\n";
 	}
-	cout << count << "\n";
 }
 
 int main() {

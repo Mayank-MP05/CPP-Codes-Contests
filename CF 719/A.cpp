@@ -35,22 +35,35 @@ typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
 
-#define SHOW true
+#define SHOW false
+
+bool isSuspecious(string str) {
+	ll n  = str.size(), i;
+	vector<bool> freq(26, false);
+	for (i = 0 ; i < n ; i++ ) {
+		while (str[i] == str[i + 1] and i < n - 1) i++;
+		if (freq[str[i] - 'A']) {
+			return true;
+		} else {
+			freq[str[i] - 'A'] = true;
+		}
+	}
+	return false;
+}
+
 
 void solve() {
-	ll i, j, n, m, el, q, k, l, r;
-	ll a, b;
-	cin >> a >> b;
-	ll xorBoth = a ^ b;
+	ll i, j, n, m, p, q, a, b, ans, el;
+	cin >> n;
+	vl ip(n);
 
-	// Count the seet bits in xorBoth
-	ll count = 0, rmsb;
-	while (xorBoth != 0) {
-		rmsb = xorBoth & ( -xorBoth);
-		xorBoth -= rmsb;;
-		count++;
+	string str;
+	cin >> str;
+	if (isSuspecious(str)) {
+		cout << "NO\n";
+	} else {
+		cout << "YES\n";
 	}
-	cout << count << "\n";
 }
 
 int main() {
